@@ -1,39 +1,55 @@
 # Wb-hack
 
-Time series hackathon project focused on forecasting demand-like target values from route-based historical data.  
-The repository contains exploratory data analysis, feature engineering experiments, a custom evaluation metric, and an initial forecasting pipeline built in Jupyter Notebook.
+Проект по прогнозированию временных рядов, выполненный в рамках хакатона.  
+Репозиторий содержит исследование данных, генерацию признаков, собственную метрику качества и baseline-подход для предсказания целевой переменной `target_1h`.
 
-> **Project status:** this is **not the final version** of the solution.  
-> The repository currently contains a working draft with experiments, intermediate analysis, and an initial modeling setup.
+> **Важно:** это **не финальная версия** решения.  
+> В репозитории находится промежуточный рабочий вариант с экспериментами, анализом и базовой моделью.
 
-## Overview
+## Описание проекта
 
-The project is based on historical time series data with route identifiers, timestamps, multiple status features, and the target variable `target_1h`.  
-The main goal is to explore patterns in the data, engineer useful time-based features, and build a baseline forecasting approach for future predictions.
+В основе проекта лежат данные по маршрутам с временными метками и набором статусных признаков.  
+Основная задача — проанализировать временные закономерности, выделить полезные признаки и построить baseline-модель для прогноза.
 
-## Features
+Проект включает:
+- анализ структуры и поведения данных во времени
+- исследование сезонности и повторяющихся паттернов
+- построение временных, календарных и лаговых признаков
+- подготовку baseline-решения для forecasting-задачи
 
-- **EDA** — exploratory analysis of the training dataset
-- **Feature Engineering** — creation of calendar and lag-based features
-- **Custom Metric** — implementation of `WAPE + Relative Bias`
-- **Time Series Analysis** — route-level and time-based pattern inspection
-- **Forecasting Baseline** — initial setup using `MLForecast` and `CatBoost`
-- **Notebook Workflow** — all experiments and intermediate results are collected in a single Jupyter Notebook
+## Что реализовано
 
-## Tech Stack
+- **Исследовательский анализ данных (EDA)**  
+  Изучение распределений, динамики целевой переменной и временных зависимостей.
 
-- **Language:** Python
-- **Environment:** Jupyter Notebook
-- **Data Analysis:** NumPy, pandas
-- **Visualization:** matplotlib
-- **Forecasting:** utilsforecast, MLForecast
-- **Modeling:** CatBoost
-- **Data Format:** Parquet
+- **Feature Engineering**  
+  Создание календарных признаков, лагов и rolling-статистик для улучшения качества прогноза.
 
-## Repository Structure
+- **Пользовательская метрика качества**  
+  Используется метрика `WAPE + Relative Bias`, которая учитывает как относительную ошибку, так и систематическое смещение предсказаний.
+
+- **Baseline для временного ряда**  
+  Подготовлен начальный пайплайн прогнозирования на основе `MLForecast` и `CatBoost`.
+
+- **Jupyter-based workflow**  
+  Все этапы работы — от анализа до моделирования — собраны в одном ноутбуке.
+
+## Стек
+
+- **Python**
+- **Jupyter Notebook**
+- **NumPy**
+- **pandas**
+- **matplotlib**
+- **utilsforecast**
+- **MLForecast**
+- **CatBoost**
+- **Parquet**
+
+## Структура репозитория
 
 ```text
 .
-├── solution.ipynb              # Main notebook with EDA, features, metric, and modeling draft
-├── train_solo_track.parquet    # Training dataset
-└── test_solo_track.parquet     # Test dataset
+├── solution.ipynb              # Основной ноутбук с анализом, признаками и baseline-моделью
+├── train_solo_track.parquet    # Обучающий датасет
+└── test_solo_track.parquet     # Тестовый датасет
